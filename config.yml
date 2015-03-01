@@ -1,6 +1,8 @@
 # Configuration file for WebEssentials
+
 # GUI
 gui-title: '&5WebEssentials'
+
 # URLs to be used by icons
 vote-urls:
   - '&3http://example.com/'
@@ -9,21 +11,25 @@ vote-urls:
 website-url: http://example.com/
 donate-url: http://example.com/
 voice-server-ip: '&6The IP of the voice server is: ts3.example.com'
+
 # Vote Icon
 vote-icon: PAPER
 vote-icon-name: '&3Vote'
 vote-icon-lore: '&6Vote for the server'
 vote-icon-position: 0
+
 # Website Icon
 website-icon: PAPER
 website-icon-name: '&3Website'
 website-icon-lore: '&6Visit the server website'
 website-icon-position: 1
+
 # Donate Icon
 donate-icon: PAPER
 donate-icon-name: '&3Donate'
 donate-icon-lore: '&6Donate to the server to keep it running'
 donate-icon-position: 2
+
 # Voice Server Icon
 voice-server-icon: PAPER
 voice-server-icon-name: '&3Voice Server'
