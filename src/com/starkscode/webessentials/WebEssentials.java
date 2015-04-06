@@ -3,7 +3,6 @@ package com.starkscode.webessentials;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
-import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -20,89 +19,97 @@ public class WebEssentials extends JavaPlugin {
 		getConfig();
 		saveDefaultConfig();
 		menu = new IconMenu(ChatColor.translateAlternateColorCodes('&',
-				getConfig().getString("gui-title")), 9,
+				getConfig().getString("gui_title")), 9,
 				new IconMenu.OptionClickEventHandler() {
 					public void onOptionClick(IconMenu.OptionClickEvent event) {
 						String name = event.getName();
 						Player player = event.getPlayer();
 						if (name.contains(getConfig().getString(
-								"vote-icon-name").replaceAll("(&([a-f0-9]))",
+								"vote_icon_name").replaceAll("(&([a-f0-9]))",
 								""))) {
-							List<String> voteurls = getConfig().getStringList(
-									"vote-urls");
-							for (String vu : voteurls) {
+							for (String v_u : getConfig().getStringList(
+									"vote_urls")) {
+								try {
+									Desktop.getDesktop()
+											.browse(URI.create(v_u));
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+						if (name.contains(getConfig().getString(
+								"website_icon_name").replaceAll(
+								"(&([a-f0-9]))", ""))) {
+							for (String w_u : getConfig().getStringList(
+									"website_urls")) {
+								try {
+									Desktop.getDesktop()
+											.browse(URI.create(w_u));
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+						if (name.contains(getConfig().getString(
+								"donate_icon_name").replaceAll("(&([a-f0-9]))",
+								""))) {
+							for (String d_u : getConfig().getStringList(
+									"donate_urls")) {
+								try {
+									Desktop.getDesktop()
+											.browse(URI.create(d_u));
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+						if (name.contains(getConfig().getString(
+								"voice_server_icon_name").replaceAll(
+								"(&([a-f0-9]))", ""))) {
+							for (String v_s_u : getConfig().getStringList(
+									"voice_server_urls")) {
 								player.sendMessage(ChatColor
-										.translateAlternateColorCodes('&', vu));
+										.translateAlternateColorCodes('&',
+												v_s_u));
 							}
-						}
-						if (name.contains(getConfig().getString(
-								"website-icon-name").replaceAll(
-								"(&([a-f0-9]))", ""))) {
-							try {
-								Desktop.getDesktop().browse(
-										URI.create(getConfig().getString(
-												"website-url")));
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-						}
-						if (name.contains(getConfig().getString(
-								"donate-icon-name").replaceAll("(&([a-f0-9]))",
-								""))) {
-							try {
-								Desktop.getDesktop().browse(
-										URI.create(getConfig().getString(
-												"donate-url")));
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-						}
-						if (name.contains(getConfig().getString(
-								"voice-server-icon-name").replaceAll(
-								"(&([a-f0-9]))", ""))) {
-							player.sendMessage(ChatColor
-									.translateAlternateColorCodes(
-											'&',
-											getConfig().getString(
-													"voice-server-ip")));
 						}
 						event.setWillClose(true);
 					}
 				}, this)
 				.setOption(
-						getConfig().getInt("vote-icon-position"),
+						getConfig().getInt("vote_icon_position"),
 						new ItemStack(Material.getMaterial(getConfig()
-								.getString("vote-icon")), 1),
+								.getString("vote_icon")), 1),
 						ChatColor.translateAlternateColorCodes('&', getConfig()
-								.getString("vote-icon-name")),
+								.getString("vote_icon_name")),
 						new String[] { ChatColor.translateAlternateColorCodes(
-								'&', getConfig().getString("vote-icon-lore")) })
+								'&', getConfig().getString("vote_icon_lore")) })
 				.setOption(
-						getConfig().getInt("website-icon-position"),
+						getConfig().getInt("website_icon_position"),
 						new ItemStack(Material.getMaterial(getConfig()
-								.getString("website-icon")), 1),
+								.getString("website_icon")), 1),
 						ChatColor.translateAlternateColorCodes('&', getConfig()
-								.getString("website-icon-name")),
+								.getString("website_icon_name")),
 						new String[] { ChatColor
 								.translateAlternateColorCodes('&', getConfig()
-										.getString("website-icon-lore")) })
+										.getString("website_icon_lore")) })
 				.setOption(
-						getConfig().getInt("donate-icon-position"),
+						getConfig().getInt("donate_icon_position"),
 						new ItemStack(Material.getMaterial(getConfig()
-								.getString("donate-icon")), 1),
+								.getString("donate_icon")), 1),
 						ChatColor.translateAlternateColorCodes('&', getConfig()
-								.getString("donate-icon-name")),
+								.getString("donate_icon_name")),
 						new String[] { ChatColor.translateAlternateColorCodes(
-								'&', getConfig().getString("donate-icon-lore")) })
+								'&', getConfig().getString("donate_icon_lore")) })
 				.setOption(
-						getConfig().getInt("voice-server-icon-position"),
+						getConfig().getInt("voice_server_icon_position"),
 						new ItemStack(Material.getMaterial(getConfig()
-								.getString("voice-server-icon")), 1),
+								.getString("voice_server_icon")), 1),
 						ChatColor.translateAlternateColorCodes('&', getConfig()
-								.getString("voice-server-icon-name")),
+								.getString("voice_server_icon_name")),
 						new String[] { ChatColor
 								.translateAlternateColorCodes('&', getConfig()
-										.getString("voice-server-icon-lore")) });
+										.getString("voice_server_icon_lore")) });
 	}
 
 	public void onDisable() {
